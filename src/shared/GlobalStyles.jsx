@@ -20,7 +20,8 @@ const GlobalStyle = createGlobalStyle`
         font-size: 100%;
         font: inherit;
         vertical-align: baseline;
-        font-family: 'Quicksand', sans-serif;
+        font-family: 'Roboto', sans-serif;
+		color: white;
     }
     input::-webkit-outer-spin-button,
     input::-webkit-inner-spin-button {
@@ -31,6 +32,10 @@ const GlobalStyle = createGlobalStyle`
     input[type=number] {
     -moz-appearance: textfield;
     }
+
+	button:focus, input:focus, button:active, input:active {
+		outline: none;
+	}
 
     a {
         text-decoration: none;

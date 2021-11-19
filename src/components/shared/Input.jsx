@@ -1,8 +1,15 @@
+/* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 
-function UserInput({ setInfo, userInfo, placeholder, inputType, onEnter }) {
+const UserInput = function ({
+  setInfo,
+  userInfo,
+  placeholder,
+  inputType,
+  onEnter,
+}) {
   const [focused, setFocused] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   return (
@@ -31,7 +38,7 @@ function UserInput({ setInfo, userInfo, placeholder, inputType, onEnter }) {
       )}
     </UserInputArea>
   );
-}
+};
 
 const UserInputArea = styled.div`
   width: 100%;

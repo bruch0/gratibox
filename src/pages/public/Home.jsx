@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import Welcome from '../../components/shared/Welcome';
 import image from '../../assets/images/image05.webp';
 
-function Home() {
+const Home = function () {
   return (
     <Homepage>
       <Top>
@@ -22,7 +22,7 @@ function Home() {
       </Bottom>
     </Homepage>
   );
-}
+};
 
 export default Home;
 

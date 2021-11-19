@@ -6,10 +6,10 @@ import styled from 'styled-components';
 import Welcome from '../../components/shared/Welcome';
 import UserInput from '../../components/shared/Input';
 import BackButton from '../../components/shared/BackButton';
-import { throwError, throwSuccess } from '../../shared/ThrowMessages.js';
-import { signUpUser } from '../../services/api.js';
+import { throwError, throwSuccess } from '../../shared/ThrowMessages';
+import { signUpUser } from '../../services/api';
 
-function SignUp() {
+const SignUp = function () {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -45,7 +45,7 @@ function SignUp() {
   ];
 
   const handleSubmit = (e) => {
-    const emailRegex = /[a-zA-Z0-9]+\@+[a-zA-Z0-9]+\.+[a-zA-Z0-9]/;
+    const emailRegex = /[a-zA-Z0-9]+@+[a-zA-Z0-9]+\.+[a-zA-Z0-9]/;
     if (e === 'Enter' || e === 'click') {
       if (!name) {
         throwError('Insira seu nome');
@@ -89,13 +89,13 @@ function SignUp() {
           <Welcome />
         </Top>
         <Form autoComplete="nope">
-          {userInfo.map((info, index) => (
+          {userInfo.map((info) => (
             <UserInput
               setInfo={info.setState}
               userInfo={info.state}
               placeholder={info.placeholder}
               inputType={info.type}
-              key={index}
+              key={info.placeholder}
               onEnter={handleSubmit}
               loading={loading}
             />
@@ -115,7 +115,7 @@ function SignUp() {
       <BackButton />
     </>
   );
-}
+};
 
 export default SignUp;
 

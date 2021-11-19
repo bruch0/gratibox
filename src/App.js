@@ -1,9 +1,11 @@
 /* eslint-disable react/jsx-filename-extension */
+/* eslint-disable react/function-component-definition */
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import GlobalStyles from './shared/GlobalStyles';
 
 import Home from './pages/public/Home';
+import SignUp from './pages/public/SignUp';
 
 function App() {
   return (
@@ -11,6 +13,7 @@ function App() {
       <GlobalStyles />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/sign-up" element={<SignUp />} />
       </Routes>
     </BrowserRouter>
   );

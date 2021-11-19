@@ -7,24 +7,17 @@ import styled from 'styled-components';
 import Welcome from '../../components/shared/Welcome';
 import UserInput from '../../components/shared/Input';
 import BackButton from '../../components/shared/BackButton';
-import { throwError, throwSuccess } from '../../shared/ThrowMessages';
-import { signUpUser } from '../../services/api';
+import { throwError } from '../../shared/ThrowMessages';
+import { signInUser } from '../../services/api';
+import { storeToken } from '../../shared/tokenManager';
 
-function SignUp() {
-  const [name, setName] = useState('');
+function SignIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [repeatPassword, setRepeatPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const userInfo = [
-    {
-      state: name,
-      setState: setName,
-      placeholder: 'Nome',
-      type: 'text',
-    },
     {
       state: email,
       setState: setEmail,
@@ -37,45 +30,33 @@ function SignUp() {
       placeholder: 'Senha',
       type: 'password',
     },
-    {
-      state: repeatPassword,
-      setState: setRepeatPassword,
-      placeholder: 'Repita a senha',
-      type: 'password',
-    },
   ];
 
   const handleSubmit = (e) => {
     const emailRegex = /[a-zA-Z0-9]+@+[a-zA-Z0-9]+\.+[a-zA-Z0-9]/;
     if (e === 'Enter' || e === 'click') {
-      if (!name) {
-        throwError('Insira seu nome');
-      } else if (name.length < 3) {
-        throwError('Seu nome de usuário deve conter ao menos 3 caractéres');
-      } else if (!email) {
+      if (!email) {
         throwError('Insira seu e-mail');
       } else if (!emailRegex.test(email)) {
         throwError('Insira um e-mail válido');
       } else if (!password) {
         throwError('Insira sua senha');
       } else if (password.length < 8) {
-        throwError('Sua senha deve conter ao menos 8 caractéres');
-      } else if (!repeatPassword) {
-        throwError('Repita sua senha');
-      } else if (repeatPassword !== password) {
-        throwError('Senhas não conferem');
+        throwError('A senha contém ao menos 8 caractéres');
       } else {
         setLoading(true);
-        signUpUser(name, email, password)
-          .then(() => {
-            throwSuccess('Cadastrado com sucesso!');
-            navigate('/sign-in');
+        signInUser(email, password)
+          .then((response) => {
+            navigate('/home');
+            storeToken(response.data.token);
           })
           .catch((error) => {
             if (error.response.status === 400) {
               throwError('Ocorreu um erro, confira os campos');
+            } else if (error.response.status === 404) {
+              throwError('E-mail não registrado');
             } else {
-              throwError('E-mail já registrado');
+              throwError('Senha incorreta');
             }
             setLoading(false);
           });
@@ -85,7 +66,7 @@ function SignUp() {
 
   return (
     <>
-      <SignUpPage>
+      <SignInPage>
         <Top>
           <Welcome />
         </Top>
@@ -102,7 +83,7 @@ function SignUp() {
             />
           ))}
         </Form>
-        <SignUpButton
+        <SignInButton
           loading={loading ? 1 : 0}
           onClick={(e) => handleSubmit(e.type)}
         >
@@ -111,16 +92,16 @@ function SignUp() {
           ) : (
             'Quero começar'
           )}
-        </SignUpButton>
-      </SignUpPage>
+        </SignInButton>
+      </SignInPage>
       <BackButton loading={loading ? 1 : 0} />
     </>
   );
 }
 
-export default SignUp;
+export default SignIn;
 
-const SignUpPage = styled.main`
+const SignInPage = styled.main`
   width: 100%;
   height: 100vh;
   overflow: hidden;
@@ -140,7 +121,7 @@ const Top = styled.div`
   justify-content: space-evenly;
 `;
 
-const SignUpButton = styled.button`
+const SignInButton = styled.button`
   width: 50%;
   padding: ${(props) => (props.loading ? '0px' : '15px 10px')};
   margin: 0px;

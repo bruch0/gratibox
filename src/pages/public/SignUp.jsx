@@ -1,3 +1,4 @@
+/* eslint-disable react/function-component-definition */
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Loader from 'react-loader-spinner';
@@ -9,7 +10,7 @@ import BackButton from '../../components/shared/BackButton';
 import { throwError, throwSuccess } from '../../shared/ThrowMessages';
 import { signUpUser } from '../../services/api';
 
-const SignUp = function () {
+function SignUp() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -115,7 +116,7 @@ const SignUp = function () {
       <BackButton />
     </>
   );
-};
+}
 
 export default SignUp;
 

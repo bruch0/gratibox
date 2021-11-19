@@ -1,3 +1,4 @@
+/* eslint-disable react/function-component-definition */
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
@@ -5,7 +6,7 @@ import { Link } from 'react-router-dom';
 import Welcome from '../../components/shared/Welcome';
 import image from '../../assets/images/image05.webp';
 
-const Home = function () {
+function Home() {
   return (
     <Homepage>
       <Top>
@@ -22,7 +23,7 @@ const Home = function () {
       </Bottom>
     </Homepage>
   );
-};
+}
 
 export default Home;
 

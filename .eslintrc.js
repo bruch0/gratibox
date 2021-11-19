@@ -13,6 +13,6 @@ module.exports = {
   },
   plugins: ['react'],
   rules: {
-    'function-component-definition': '0',
+    'function-component-definition': 0,
   },
 };

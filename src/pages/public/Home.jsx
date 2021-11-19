@@ -7,7 +7,15 @@ import image from '../../assets/images/image05.webp';
 function Home() {
   return (
     <Homepage>
-      <Top></Top>
+      <Top>
+        <Welcome>
+          Bem vindo ao <span>Gratibox</span>
+        </Welcome>
+        <Disclaimer>
+          Receba em casa um box com chás, produtos organicos, incensos e muito
+          mais...
+        </Disclaimer>
+      </Top>
       <Image src={image} />
       <Bottom></Bottom>
     </Homepage>
@@ -27,7 +35,28 @@ const Homepage = styled.main`
 const Top = styled.div`
   width: 100%;
   height: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
   background-color: #6d7ce4;
+`;
+
+const Welcome = styled.p`
+  font-size: 7vw;
+  font-weight: 500;
+  text-align: center;
+
+  span {
+    font-weight: 700;
+  }
+`;
+
+const Disclaimer = styled.p`
+  font-size: 5vw;
+  font-weight: 300;
+  text-align: center;
+  padding: 0px 10%;
 `;
 
 const Image = styled.img`

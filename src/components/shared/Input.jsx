@@ -4,9 +4,17 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 
-function UserInput({ setInfo, userInfo, placeholder, inputType, onEnter }) {
+function UserInput({
+  setInfo,
+  userInfo,
+  placeholder,
+  inputType,
+  onEnter,
+  loading,
+}) {
   const [focused, setFocused] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+
   return (
     <UserInputArea>
       <Label constrict={focused || userInfo.length !== 0 ? 1 : 0}>
@@ -20,6 +28,7 @@ function UserInput({ setInfo, userInfo, placeholder, inputType, onEnter }) {
         onChange={(e) => setInfo(e.target.value)}
         value={userInfo}
         onKeyUp={(keyboard) => onEnter(keyboard.nativeEvent.key)}
+        loading={loading ? 1 : 0}
       />
       {inputType === 'password' ? (
         <TooglePasswordVisibility
@@ -58,6 +67,8 @@ const Input = styled.input`
   font-size: 5vw;
   font-family: 'Roboto', sans-serif;
   padding: 0px 15px;
+  background-color: ${(props) => (props.loading ? '#e3e3e3' : '#FFFFFF')};
+  pointer-events: ${(props) => (props.loading ? 'none' : '')};
 `;
 
 const TooglePasswordVisibility = styled.button`

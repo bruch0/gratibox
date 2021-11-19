@@ -77,8 +77,8 @@ function SignUp() {
             } else {
               throwError('E-mail já registrado');
             }
+            setLoading(false);
           });
-        setLoading(false);
       }
     }
   };
@@ -113,7 +113,7 @@ function SignUp() {
           )}
         </SignUpButton>
       </SignUpPage>
-      <BackButton />
+      <BackButton loading={loading ? 1 : 0} />
     </>
   );
 }
@@ -150,6 +150,7 @@ const SignUpButton = styled.button`
   font-weight: 700;
   color: white;
   background-color: #8c97ea;
+  pointer-events: ${(props) => (props.loading ? 'none' : '')};
 `;
 
 const Form = styled.form`

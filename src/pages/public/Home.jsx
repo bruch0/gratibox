@@ -17,7 +17,10 @@ function Home() {
         </Disclaimer>
       </Top>
       <Image src={image} />
-      <Bottom></Bottom>
+      <Bottom>
+        <SignUp to="/sign-up">Quero começar</SignUp>
+        <SignIn to="/sign-in">Já sou grato</SignIn>
+      </Bottom>
     </Homepage>
   );
 }
@@ -66,5 +69,34 @@ const Image = styled.img`
 const Bottom = styled.div`
   width: 100%;
   height: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background-color: #4d65a8;
+`;
+
+const SignUp = styled(Link)`
+  width: 50%;
+  padding: 15px 10px;
+  margin: 0px;
+  border-radius: 10px;
+  border: none;
+  font-size: 4vw;
+  font-weight: 700;
+  color: white;
+  text-align: center;
+  background-color: #8c97ea;
+`;
+
+const SignIn = styled(Link)`
+  width: 50%;
+  padding: 15px 10px;
+  margin: 0px;
+  border-radius: 10px;
+  border: none;
+  font-size: 4vw;
+  font-weight: 700;
+  color: white;
+  text-align: center;
+  background-color: transparent;
 `;

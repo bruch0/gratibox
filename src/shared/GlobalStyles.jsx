@@ -33,6 +33,10 @@ const GlobalStyle = createGlobalStyle`
     -moz-appearance: textfield;
     }
 
+	button:focus, input:focus, button:active, input:active {
+		outline: none;
+	}
+
     a {
         text-decoration: none;
         margin: 0 auto;

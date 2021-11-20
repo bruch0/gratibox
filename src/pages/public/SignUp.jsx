@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Loader from 'react-loader-spinner';
 import styled from 'styled-components';
 
-import Welcome from '../../components/shared/Welcome';
+import Welcome from '../../components/shared/WelcomeVisitant';
 import UserInput from '../../components/shared/Input';
 import BackButton from '../../components/shared/BackButton';
 import { throwError, throwSuccess } from '../../shared/ThrowMessages';
@@ -109,7 +109,7 @@ function SignUp() {
           {loading ? (
             <Loader type="ThreeDots" color="#FFFFFF" height={45} width={100} />
           ) : (
-            'Quero começar'
+            'Cadastrar'
           )}
         </SignUpButton>
       </SignUpPage>

@@ -7,6 +7,7 @@ import GlobalStyles from './shared/GlobalStyles';
 import Home from './pages/public/Home';
 import SignUp from './pages/public/SignUp';
 import SignIn from './pages/public/SignIn';
+import UserSubscription from './pages/private/UserSubscription';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/sign-in" element={<SignIn />} />
+        <Route path="/subscription" element={<UserSubscription />} />
       </Routes>
     </BrowserRouter>
   );

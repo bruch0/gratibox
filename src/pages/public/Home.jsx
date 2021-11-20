@@ -3,7 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-import Welcome from '../../components/shared/Welcome';
+import Welcome from '../../components/shared/WelcomeVisitant';
 import image from '../../assets/images/image05.webp';
 
 function Home() {

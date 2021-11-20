@@ -4,12 +4,13 @@ import { useNavigate } from 'react-router-dom';
 import Loader from 'react-loader-spinner';
 import styled from 'styled-components';
 
-import Welcome from '../../components/shared/Welcome';
+import Welcome from '../../components/shared/WelcomeVisitant';
 import UserInput from '../../components/shared/Input';
 import BackButton from '../../components/shared/BackButton';
 import { throwError } from '../../shared/ThrowMessages';
 import { signInUser } from '../../services/api';
 import { storeToken } from '../../shared/tokenManager';
+import { storeUsername } from '../../shared/usernameManager';
 
 function SignIn() {
   const [email, setEmail] = useState('');
@@ -47,8 +48,9 @@ function SignIn() {
         setLoading(true);
         signInUser(email, password)
           .then((response) => {
-            navigate('/home');
+            navigate('/subscription');
             storeToken(response.data.token);
+            storeUsername(response.data.name);
           })
           .catch((error) => {
             if (error.response.status === 400) {
@@ -90,7 +92,7 @@ function SignIn() {
           {loading ? (
             <Loader type="ThreeDots" color="#FFFFFF" height={45} width={100} />
           ) : (
-            'Quero começar'
+            'Login'
           )}
         </SignInButton>
       </SignInPage>

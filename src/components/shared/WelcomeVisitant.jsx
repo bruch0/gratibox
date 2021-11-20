@@ -4,13 +4,13 @@ import styled from 'styled-components';
 
 function Welcome() {
   return (
-    <WelcomeUser>
+    <WelcomeVisitant>
       Bem vindo ao <span>Gratibox</span>
-    </WelcomeUser>
+    </WelcomeVisitant>
   );
 }
 
-const WelcomeUser = styled.p`
+const WelcomeVisitant = styled.p`
   font-size: 7vw;
   font-weight: 500;
   text-align: center;

@@ -4,4 +4,6 @@ const storeToken = (token) => {
 
 const getToken = () => localStorage.getItem('token');
 
-export { storeToken, getToken };
+const removeToken = () => localStorage.removeItem('token');
+
+export { storeToken, getToken, removeToken };

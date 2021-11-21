@@ -11,7 +11,10 @@ import HasNoSubscription from '../../components/HasNoSubscription';
 import SubscriptionDetails from '../../components/SubscriptionDetails';
 import { getToken, storeToken } from '../../shared/tokenManager';
 import { getUsername } from '../../shared/usernameManager';
-import { requestUserSubscription } from '../../services/api';
+import {
+  requestUserSubscription,
+  requestBoxesUpdate,
+} from '../../services/api';
 import image from '../../assets/images/image04.jpg';
 
 function UserSubscription() {
@@ -21,11 +24,15 @@ function UserSubscription() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    requestUserSubscription(token)
+    requestBoxesUpdate(token)
       .then((response) => {
         if (response.data.newToken) {
           storeToken(response.data.newToken);
         }
+      })
+      .catch(() => navigate('/sign-in'));
+    requestUserSubscription(token)
+      .then((response) => {
         setSubscriptionName(response.data.subscriptionName);
       })
       .catch(() => navigate('/sign-in'));

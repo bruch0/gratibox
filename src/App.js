@@ -9,6 +9,7 @@ import SignUp from './pages/public/SignUp';
 import SignIn from './pages/public/SignIn';
 import UserSubscription from './pages/private/UserSubscription';
 import Subscribe from './pages/private/Subscribe';
+import UserSubscriptionDetails from './pages/private/UserSubscriptionDetails';
 
 function App() {
   return (
@@ -20,6 +21,10 @@ function App() {
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/subscription" element={<UserSubscription />} />
         <Route path="/subscribe" element={<Subscribe />} />
+        <Route
+          path="/subscription-details"
+          element={<UserSubscriptionDetails />}
+        />
       </Routes>
     </BrowserRouter>
   );

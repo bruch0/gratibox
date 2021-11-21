@@ -15,7 +15,11 @@ import ChooseWantedItems from '../../components/ChooseWantedItems';
 import Input from '../../components/shared/Input';
 import { getToken, storeToken } from '../../shared/tokenManager';
 import { getUsername } from '../../shared/usernameManager';
-import { persistLogin, subscribeUser } from '../../services/api';
+import {
+  subscribeUser,
+  requestUserSubscription,
+  changeUserSubscription,
+} from '../../services/api';
 import { throwError, throwSuccess } from '../../shared/ThrowMessages';
 import image from '../../assets/images/image03.jpg';
 
@@ -23,6 +27,7 @@ function Subscribe() {
   const token = getToken();
   const username = getUsername();
   const [initialLoading, setInitialLoading] = useState(true);
+  const [userHasSubscription, setUserHasSubscription] = useState(false);
   const [plan, setPlan] = useState('');
   const [deliveryDate, setDeliveryDate] = useState('');
   const [wantedItems, setWantedItems] = useState([]);
@@ -55,9 +60,12 @@ function Subscribe() {
   }, []);
 
   useEffect(() => {
-    persistLogin(token)
+    requestUserSubscription(token)
       .then((response) => {
-        storeToken(response.data);
+        if (response.data.newToken) {
+          storeToken(response.data.newToken);
+        }
+        setUserHasSubscription(Boolean(response.data.subscriptionName));
         setInitialLoading(false);
       })
       .catch(() => navigate('/'));
@@ -79,7 +87,7 @@ function Subscribe() {
       setState: setDeliveryDate,
       state: deliveryDate,
       possibleStates:
-        plan === 'Mensal' ? ['01', '10', '20'] : ['Segunda', 'Terça', 'Quarta'],
+        plan === 'Mensal' ? ['01', '10', '20'] : ['Segunda', 'Quarta', 'Sexta'],
     },
   ];
 
@@ -174,14 +182,40 @@ function Subscribe() {
   ];
 
   const handleSubmit = () => {
+    let planDeliveryDate;
+    if (deliveryDate === 'Segunda') {
+      planDeliveryDate = 'monday';
+    } else if (deliveryDate === 'Quarta') {
+      planDeliveryDate = 'wednesday';
+    } else if (deliveryDate === 'Sexta') {
+      planDeliveryDate = 'friday';
+    } else {
+      planDeliveryDate = deliveryDate;
+    }
     if (!zipcode) {
       throwError('Insira seu CEP');
     } else if (!number) {
       throwError('Insira o número da sua casa');
+    } else if (userHasSubscription) {
+      changeUserSubscription(
+        plan === 'Mensal' ? 'monthly' : 'weekly',
+        planDeliveryDate,
+        wantedItems,
+        zipcode.replace('-', ''),
+        number,
+        token
+      )
+        .then(() => {
+          throwSuccess('Assinatura trocada com sucesso!');
+          navigate('/subscription');
+        })
+        .catch(() => {
+          throwError('Dados inválidos, confira seus campos');
+        });
     } else {
       subscribeUser(
         plan === 'Mensal' ? 'monthly' : 'weekly',
-        deliveryDate,
+        planDeliveryDate,
         wantedItems,
         zipcode.replace('-', ''),
         number,

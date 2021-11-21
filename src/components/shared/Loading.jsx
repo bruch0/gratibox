@@ -14,10 +14,6 @@ function Loading() {
 
 export default Loading;
 
-const LoadIcon = styled(LoadingIcon)`
-  width: 80%;
-`;
-
 const Load = styled.main`
   width: 100%;
   height: 100vh;
@@ -25,4 +21,8 @@ const Load = styled.main`
   justify-content: center;
   align-items: center;
   background-color: #6d7ce4;
+`;
+
+const LoadIcon = styled(LoadingIcon)`
+  width: 80%;
 `;

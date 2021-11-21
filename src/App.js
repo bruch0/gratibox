@@ -20,10 +20,6 @@ function App() {
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/subscription" element={<UserSubscription />} />
         <Route path="/subscribe" element={<Subscribe />} />
-        <Route
-          path="/subscription-details"
-          element={<UserSubscriptionDetails />}
-        />
       </Routes>
     </BrowserRouter>
   );

@@ -48,9 +48,9 @@ function SignIn() {
         setLoading(true);
         signInUser(email, password)
           .then((response) => {
-            navigate('/subscription');
             storeToken(response.data.token);
             storeUsername(response.data.name);
+            navigate('/subscription');
           })
           .catch((error) => {
             if (error.response.status === 400) {
@@ -80,7 +80,7 @@ function SignIn() {
               placeholder={info.placeholder}
               inputType={info.type}
               key={info.placeholder}
-              onEnter={handleSubmit}
+              onSubmit={handleSubmit}
               loading={loading}
             />
           ))}
@@ -96,7 +96,7 @@ function SignIn() {
           )}
         </SignInButton>
       </SignInPage>
-      <BackButton loading={loading ? 1 : 0} />
+      <BackButton loading={loading ? 1 : 0} fixNavigation="/" />
     </>
   );
 }

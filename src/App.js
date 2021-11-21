@@ -8,7 +8,6 @@ import Home from './pages/public/Home';
 import SignUp from './pages/public/SignUp';
 import SignIn from './pages/public/SignIn';
 import UserSubscription from './pages/private/UserSubscription';
-import UserSubscriptionDetails from './pages/private/SubscriptionDetails';
 import Subscribe from './pages/private/Subscribe';
 
 function App() {

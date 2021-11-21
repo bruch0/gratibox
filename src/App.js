@@ -8,6 +8,8 @@ import Home from './pages/public/Home';
 import SignUp from './pages/public/SignUp';
 import SignIn from './pages/public/SignIn';
 import UserSubscription from './pages/private/UserSubscription';
+import UserSubscriptionDetails from './pages/private/SubscriptionDetails';
+import Subscribe from './pages/private/Subscribe';
 
 function App() {
   return (
@@ -18,6 +20,11 @@ function App() {
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/subscription" element={<UserSubscription />} />
+        <Route path="/subscribe" element={<Subscribe />} />
+        <Route
+          path="/subscription-details"
+          element={<UserSubscriptionDetails />}
+        />
       </Routes>
     </BrowserRouter>
   );

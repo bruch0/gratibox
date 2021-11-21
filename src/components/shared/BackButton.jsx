@@ -5,11 +5,14 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 
-function BackButton({ loading }) {
+function BackButton({ loading, fixNavigation }) {
   const navigate = useNavigate();
 
   return (
-    <GoBackButton onClick={() => navigate(-1)} loading={loading ? 1 : 0}>
+    <GoBackButton
+      onClick={() => (fixNavigation ? navigate(fixNavigation) : navigate(-1))}
+      loading={loading ? 1 : 0}
+    >
       <AiOutlineArrowLeft />
     </GoBackButton>
   );

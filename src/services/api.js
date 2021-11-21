@@ -37,7 +37,7 @@ const subscribeUser = (
   token
 ) =>
   api.post(
-    '/subscibe',
+    '/subscribe',
     {
       plan,
       deliveryDate,
@@ -82,7 +82,7 @@ const registerFeedback = (boxId, feedbackId, comment, token) =>
 const requestBoxesUpdate = (token) =>
   api.get('/update-boxes', makeHeaders(token));
 
-const persistLogin = (token) => api.get('/persist-login', makeHeaders(token));
+const persistLogin = (token) => api.post('/persist-login', { token });
 
 export {
   api,

@@ -97,7 +97,7 @@ function SignUp() {
               placeholder={info.placeholder}
               inputType={info.type}
               key={info.placeholder}
-              onEnter={handleSubmit}
+              onSubmit={handleSubmit}
               loading={loading}
             />
           ))}
@@ -113,7 +113,7 @@ function SignUp() {
           )}
         </SignUpButton>
       </SignUpPage>
-      <BackButton loading={loading ? 1 : 0} />
+      <BackButton loading={loading ? 1 : 0} fixNavigation="/" />
     </>
   );
 }

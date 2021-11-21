@@ -7,7 +7,8 @@ function Welcome({ user, disclaimer }) {
   return (
     <>
       <WelcomeUser>
-        Bom te ver por aqui, <span>{user}</span>
+        Bom te ver por aqui,{' '}
+        <span>{user[0].toUpperCase() + user.substring(1)}</span>
       </WelcomeUser>
       {disclaimer ? (
         <Disclaimer>

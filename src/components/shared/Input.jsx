@@ -9,26 +9,43 @@ function UserInput({
   userInfo,
   placeholder,
   inputType,
-  onEnter,
+  onSubmit,
   loading,
+  subscribePage,
+  maxLength,
+  customWidth,
+  disabled,
 }) {
   const [focused, setFocused] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
+  let background;
+
+  if (subscribePage) {
+    background = loading ? '#d5cbdd' : '#e8dff0';
+  } else {
+    background = loading ? '#e3e3e3' : '#FFFFFF';
+  }
+
   return (
-    <UserInputArea>
+    <UserInputArea customWidth={customWidth}>
       <Label constrict={focused || userInfo.length !== 0 ? 1 : 0}>
         {placeholder}
       </Label>
       <Input
+        disabled={disabled}
         autoComplete="nope"
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}
         type={showPassword ? 1 : inputType}
         onChange={(e) => setInfo(e.target.value)}
         value={userInfo}
-        onKeyUp={(keyboard) => onEnter(keyboard.nativeEvent.key)}
+        onKeyUp={(keyboard) =>
+          onSubmit ? onSubmit(keyboard.nativeEvent.key) : ''
+        }
         loading={loading ? 1 : 0}
+        background={background}
+        maxLength={maxLength}
       />
       {inputType === 'password' ? (
         <TooglePasswordVisibility
@@ -45,7 +62,7 @@ function UserInput({
 }
 
 const UserInputArea = styled.div`
-  width: 100%;
+  width: ${(props) => (props.customWidth ? props.customWidth : '100%')};
   position: relative;
 `;
 
@@ -55,7 +72,7 @@ const Label = styled.p`
   color: ${(props) => (props.constrict ? '#6d7ce4' : '#60484866')};
   position: absolute;
   top: ${(props) => (props.constrict ? '5%' : '25%')};
-  left: ${(props) => (props.constrict ? '4%' : '5%')};
+  left: ${(props) => (props.constrict ? '15px' : '5%')};
   pointer-events: none;
 `;
 
@@ -67,8 +84,10 @@ const Input = styled.input`
   font-size: 5vw;
   font-family: 'Roboto', sans-serif;
   padding: 0px 15px;
-  background-color: ${(props) => (props.loading ? '#e3e3e3' : '#FFFFFF')};
+  background-color: ${(props) => props.background};
   pointer-events: ${(props) => (props.loading ? 'none' : '')};
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 const TooglePasswordVisibility = styled.button`

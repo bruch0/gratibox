@@ -17,7 +17,7 @@ import image from '../../assets/images/image04.jpg';
 function UserSubscription() {
   const token = getToken();
   const username = getUsername();
-  const [subscriptionId, setSubscriptionId] = useState(false);
+  const [subscriptionName, setSubscriptionName] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -26,12 +26,12 @@ function UserSubscription() {
         if (response.data.newToken) {
           storeToken(response.data.newToken);
         }
-        setSubscriptionId(response.data.subscriptionId);
+        setSubscriptionName(response.data.subscriptionName);
       })
       .catch(() => navigate('/sign-in'));
   }, [token]);
 
-  if (subscriptionId === false) {
+  if (subscriptionName === false) {
     return <Loading />;
   }
 
@@ -41,19 +41,31 @@ function UserSubscription() {
         <Top>
           <Welcome user={username?.split(' ')[0]} />
         </Top>
-        {subscriptionId === null ? <HasNoSubscription /> : ''}
+        {subscriptionName === null ? <HasNoSubscription /> : ''}
         <Container>
           <Image src={image} />
-          <SubscriptionDetails subscriptionId={2} />
-          <Action to="/subscribe">
-            {subscriptionId === 2 ? 'Conferir assinatura' : 'Assinar'}
+          <SubscriptionDetails subscriptionName={2} />
+          <Action
+            to={
+              subscriptionName === 'weekly'
+                ? '/subscription-details'
+                : '/subscribe?plan=Semanal'
+            }
+          >
+            {subscriptionName === 'weekly' ? 'Conferir assinatura' : 'Assinar'}
           </Action>
         </Container>
         <Container>
           <Image src={image} />
-          <SubscriptionDetails subscriptionId={1} />
-          <Action to="/subscribe">
-            {subscriptionId === 1 ? 'Conferir assinatura' : 'Assinar'}
+          <SubscriptionDetails subscriptionName={1} />
+          <Action
+            to={
+              subscriptionName === 'monthly'
+                ? '/subscription-details'
+                : '/subscribe?plan=Mensal'
+            }
+          >
+            {subscriptionName === 'monthly' ? 'Conferir assinatura' : 'Assinar'}
           </Action>
         </Container>
       </UserSubscriptionpage>

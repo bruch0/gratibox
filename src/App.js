@@ -10,6 +10,7 @@ import SignIn from './pages/public/SignIn';
 import UserSubscription from './pages/private/UserSubscription';
 import Subscribe from './pages/private/Subscribe';
 import UserSubscriptionDetails from './pages/private/UserSubscriptionDetails';
+import Feedback from './pages/private/Feedback';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           path="/subscription-details"
           element={<UserSubscriptionDetails />}
         />
+        <Route path="/feedback" element={<Feedback />} />
       </Routes>
     </BrowserRouter>
   );

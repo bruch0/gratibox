@@ -305,7 +305,7 @@ function Subscribe() {
                 state={wantedItems}
               />
             </Container>
-            <Action onClick={handleNextPage}>Próximo</Action>
+            <Action onClick={handleNextPage}>Finalizar</Action>
           </>
         )}
       </SubscribePage>

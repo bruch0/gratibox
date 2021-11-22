@@ -139,7 +139,7 @@ function Subscribe() {
       setState: setZipcode,
       state: zipcode,
       placeholder: 'CEP',
-      inputType: 'string',
+      inputType: 'tel',
       onSubmit: handleCep,
       maxLength: 9,
     },
@@ -174,7 +174,7 @@ function Subscribe() {
       state: number,
       onSubmit: handleNumber,
       placeholder: 'Número',
-      inputType: 'string',
+      inputType: 'tel',
       customWidth: '25%',
       maxLength: 4,
       disabled: !adress,
@@ -305,7 +305,7 @@ function Subscribe() {
                 state={wantedItems}
               />
             </Container>
-            <Action onClick={handleNextPage}>Próximo</Action>
+            <Action onClick={handleNextPage}>Finalizar</Action>
           </>
         )}
       </SubscribePage>

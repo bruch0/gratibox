@@ -15,7 +15,8 @@ import {
   requestUserSubscription,
   requestBoxesUpdate,
 } from '../../services/api';
-import image from '../../assets/images/image04.jpg';
+import image1 from '../../assets/images/image04.jpg';
+import image2 from '../../assets/images/image02.jpg';
 
 function UserSubscription() {
   const token = getToken();
@@ -24,16 +25,15 @@ function UserSubscription() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    requestBoxesUpdate(token)
+    requestUserSubscription(token)
       .then((response) => {
         if (response.data.newToken) {
           storeToken(response.data.newToken);
         }
-      })
-      .catch(() => navigate('/sign-in'));
-    requestUserSubscription(token)
-      .then((response) => {
         setSubscriptionName(response.data.subscriptionName);
+        if (response.data.subscriptionName) {
+          requestBoxesUpdate(token).catch(() => navigate('/sign-in'));
+        }
       })
       .catch(() => navigate('/sign-in'));
   }, [token]);
@@ -50,8 +50,8 @@ function UserSubscription() {
         </Top>
         {subscriptionName === null ? <HasNoSubscription /> : ''}
         <Container>
-          <Image src={image} />
-          <SubscriptionDetails subscriptionName={2} />
+          <Image src={image1} />
+          <SubscriptionDetails subscriptionNId={2} />
           <Action
             to={
               subscriptionName === 'weekly'
@@ -63,8 +63,8 @@ function UserSubscription() {
           </Action>
         </Container>
         <Container>
-          <Image src={image} />
-          <SubscriptionDetails subscriptionName={1} />
+          <Image src={image2} />
+          <SubscriptionDetails subscriptionId={1} />
           <Action
             to={
               subscriptionName === 'monthly'

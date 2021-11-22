@@ -35,7 +35,7 @@ function UserSubscription() {
           requestBoxesUpdate(token).catch(() => navigate('/sign-in'));
         }
       })
-      .catch(() => navigate('/sign-in'));
+      .catch(() => navigate('/'));
   }, [token]);
 
   if (subscriptionName === false) {

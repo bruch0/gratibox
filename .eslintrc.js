@@ -13,6 +13,12 @@ module.exports = {
   },
   plugins: ['react'],
   rules: {
-    'function-component-definition': 0,
+    'react/function-component-definition': [
+      'error',
+      {
+        namedComponents: 'function-declaration',
+        unnamedComponents: 'arrow-function',
+      },
+    ],
   },
 };

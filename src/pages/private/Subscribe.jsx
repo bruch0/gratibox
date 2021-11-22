@@ -32,7 +32,7 @@ function Subscribe() {
   const [deliveryDate, setDeliveryDate] = useState('');
   const [wantedItems, setWantedItems] = useState([]);
   const [name, setName] = useState(
-    username[0].toUpperCase() + username.substring(1)
+    username ? username[0].toUpperCase() + username.substring(1) : ''
   );
   const [zipcode, setZipcode] = useState('');
   const [adress, setAdress] = useState('');

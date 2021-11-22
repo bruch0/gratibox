@@ -1,12 +1,31 @@
 /* eslint-disable react/function-component-definition */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import Welcome from '../../components/shared/WelcomeVisitant';
+import Loading from '../../components/shared/Loading';
+import { getToken, storeToken } from '../../shared/tokenManager';
+import { persistLogin } from '../../services/api';
 import image from '../../assets/images/image05.webp';
 
 function Home() {
+  const token = getToken();
+  const [initialLoading, setInitialLoading] = useState(true);
+  const navigate = useNavigate();
+  useEffect(() => {
+    persistLogin(token)
+      .then((response) => {
+        storeToken(response.data);
+        navigate('/subscription');
+      })
+      .catch(() => setInitialLoading(false));
+  }, []);
+
+  if (initialLoading) {
+    return <Loading />;
+  }
+
   return (
     <Homepage>
       <Top>

@@ -76,8 +76,12 @@ const requestUserInfo = (token) => api.get('/user-info', makeHeaders(token));
 const requestDeliveredBoxes = (token) =>
   api.get('/delivered-boxes', makeHeaders(token));
 
-const registerFeedback = (boxId, feedbackId, comment, token) =>
-  api.post('/feedback', { boxId, feedbackId, comment }, makeHeaders(token));
+const registerFeedback = (boxId, feedbackId, token, comment) =>
+  api.post(
+    '/feedback',
+    feedbackId === 2 ? { boxId, feedbackId, comment } : { boxId, feedbackId },
+    makeHeaders(token)
+  );
 
 const requestBoxesUpdate = (token) =>
   api.get('/update-boxes', makeHeaders(token));

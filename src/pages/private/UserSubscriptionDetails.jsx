@@ -53,7 +53,7 @@ function UserSubscriptionDetails() {
           dates: sortDates(response.data.dates),
         });
       })
-      .catch(() => navigate('/sign-in'));
+      .catch(() => navigate('/'));
   }, [token]);
 
   const infos = [

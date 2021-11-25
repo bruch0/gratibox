@@ -11,7 +11,7 @@
 ## About ❔
 
 Gratibox is a delivery app! Subscribe yourself to receive gratitude through our amazing boxes!
-  
+
 <!-- ## Preview
 
 um gif da aplicação bem maneiro -->
@@ -39,21 +39,39 @@ um gif da aplicação bem maneiro -->
 
 ## How to run 🏃‍♀️💨
 
-```bash
-# Clone this repository
-$ git clone https://github.com/bruch0/gratibox.git
-
-# Access the project folder cmd/terminal
-$ cd gratibox
-
-# Install the dependencies
-$ npm install
-
-# Run the application 
-$ npm start
-
-# The server will automatically start at localhost:3000/ on your favorite browser 
 ```
+This project relies on another repository, wich will run the server locally.
+When you have the server ready, come back here!
+```
+
+<a href="https://github.com/bruch0/gratibox-API" target="_blank">Check the server repository here</a>
+
+### Clone this repository
+
+```bash
+git clone https://github.com/bruch0/gratibox.git
+```
+
+### Access the project folder cmd/terminal
+
+```bash
+cd gratibox
+```
+
+### Install the dependencies
+
+```bash
+npm i
+```
+
+### Run the application
+
+```bash
+npm start
+```
+
+The app will automatically start at localhost:3000 on your favorite browser
+
 </br>
 
 ## Tech Stack 💾
